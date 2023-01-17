@@ -3,3 +3,10 @@ metadata:
   name: retrodep
   projectType: retrodep
   version: 0.0.1
+components:
+  - name: outerloop-build
+    image:
+      imageName: retrodep:latest
+      dockerfile:
+        uri: Dockerfile
+        buildContext: .
