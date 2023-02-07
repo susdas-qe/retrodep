@@ -14,7 +14,7 @@ COPY main.go main.go
 COPY retrodep/ retrodep/
 
 # Build
-RUN if [ -e "/cachi2/cachi2.env" ]; then source "/cachi2/cachi2.env"; fi && go build -o retrodep-bin ./main.go
+RUN go build -o retrodep-bin ./main.go
 
 # Use ubi-minimal as minimal base image to package the manager binary
 # Refer to https://catalog.redhat.com/software/containers/ubi8/ubi-minimal/5c359a62bed8bd75a2c3fba8 for more details
