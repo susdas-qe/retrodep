@@ -1,5 +1,6 @@
 schemaVersion: 2.2.0
 metadata:
+  language: Go
   name: retrodep
   projectType: test-hermetic-build
   version: 0.0.1
