@@ -1,7 +1,7 @@
 schemaVersion: 2.2.0
 metadata:
   name: retrodep
-  projectType: retrodep
+  projectType: test-hermetic-build
   version: 0.0.1
 components:
   - name: outerloop-build
