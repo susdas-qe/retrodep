@@ -11,3 +11,42 @@ components:
       dockerfile:
         uri: Dockerfile
         buildContext: .
+  - name: outerloop-deploy
+    kubernetes:
+      inlined: |-
+        kind: Deployment
+        apiVersion: apps/v1
+        metadata:
+          name: my-retrodep
+        spec:
+          replicas: 1
+          selector:
+            matchLabels:
+              app: my-retrodep
+          template:
+            metadata:
+              labels:
+                app: my-retrodep
+            spec:
+              containers:
+                - name: my-retrodep
+                  image: retrodep:latest
+                  resources:
+                    limits:
+                      memory: "1024Mi"
+                      cpu: "500m"
+commands:
+  - id: build-image
+    apply:
+      component: outerloop-build
+  - id: deployk8s
+    apply:
+      component: outerloop-deploy
+  - id: deploy
+    composite:
+      commands:
+        - build-image
+        - deployk8s
+      group:
+        kind: deploy
+        isDefault: true
